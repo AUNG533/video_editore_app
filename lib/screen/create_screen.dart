@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_editing_app/screen/create_project.dart';
 import 'package:video_editing_app/widgets/project_widget.dart';
 
 import '../dummy/dummy.dart';
@@ -11,11 +12,8 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
-
   List<DummyProject> dummyP = [
-    DummyProject(title: 'Title 1', subTitle: 'Last Seen:' + '12/12/2022', image: 'assets/image.png'),
-    DummyProject(title: 'Title 1', subTitle: 'Last Seen:' + '12/12/2022', image: 'assets/image.png'),
-
+    DummyProject(title: 'Title 1', subTitle: 'subTitle', image: 'assets/image.png')
   ];
 
   @override
@@ -29,8 +27,15 @@ class _CreateScreenState extends State<CreateScreen> {
             child: Container(
               child: Column(
                 children: [
-                  GestureDetector(
-                    onTap: () {},
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CreateProject(),
+                        ),
+                      );
+                    },
                     child: const ProjectWidget(),
                   ),
                   Expanded(
@@ -76,5 +81,3 @@ class _CreateScreenState extends State<CreateScreen> {
     );
   }
 }
-
-
