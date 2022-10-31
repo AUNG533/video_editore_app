@@ -40,106 +40,200 @@ class _CreateProjectState extends State<CreateProject> {
         children: [
           Expanded(
             flex: 6,
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 40),
-                  const Padding(
-                    padding: EdgeInsets.all(18.0),
-                    child: Text(
-                      'Project Name',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      controller: projectName,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter Project Name',
-                        hintStyle: TextStyle(color: Colors.grey),
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.0,
-                          horizontal: 20.0,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(32.0),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
-                          borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.white, width: 2.0),
-                        ),
+            child: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 40),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
+                      child: Text(
+                        'Project Name',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Padding(
-                    padding: EdgeInsets.all(18.0),
-                    child: Text(
-                      'Aspect ratio',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: projectName,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter Project Name',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.0,
+                            horizontal: 20.0,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(32.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 1.0),
+                            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 2.0),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Container(
-                          height: 120,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.black26,
-                            borderRadius: BorderRadius.circular(2.0),
-                          ),
+                    const SizedBox(height: 10),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
+                      child: Text(
+                        'Aspect ratio',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Container(
-                          height: 120,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.black26,
-                            borderRadius: BorderRadius.circular(2.0),
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 16,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: InkWell(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.black12,
+                                    radius: 50.0,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.airplay_rounded),
+                                        Text('16:9'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: InkWell(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.black12,
+                                    radius: 50.0,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.airplay_rounded),
+                                        Text('16:9'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: InkWell(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.black12,
+                                    radius: 50.0,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.airplay_rounded),
+                                        Text('9:16'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),                      Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: InkWell(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.black12,
+                                    radius: 50.0,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.airplay_rounded),
+                                        Text('1:1'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: InkWell(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.black12,
+                                    radius: 50.0,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.airplay_rounded),
+                                        Text('4:3'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: InkWell(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.black12,
+                                    radius: 50.0,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.airplay_rounded),
+                                        Text('3:4'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: InkWell(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.black12,
+                                    radius: 50.0,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.airplay_rounded),
+                                        Text('4:5'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: InkWell(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.black12,
+                                    radius: 50.0,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.airplay_rounded),
+                                        Text('2:35:1'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Container(
-                          height: 120,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.black26,
-                            borderRadius: BorderRadius.circular(2.0),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Container(
-                          height: 120,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.black26,
-                            borderRadius: BorderRadius.circular(2.0),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

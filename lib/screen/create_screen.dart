@@ -13,7 +13,7 @@ class CreateScreen extends StatefulWidget {
 
 class _CreateScreenState extends State<CreateScreen> {
   List<DummyProject> dummyP = [
-    DummyProject(title: 'Title 1', subTitle: 'subTitle', image: 'assets/image.png')
+    // DummyProject(title: 'Title 1', subTitle: 'subTitle', image: 'assets/img_1.png')
   ];
 
   @override
