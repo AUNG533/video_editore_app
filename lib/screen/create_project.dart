@@ -237,20 +237,16 @@ class _CreateProjectState extends State<CreateProject> {
               ),
             ),
           ),
-          Expanded(
+          Padding(
+            padding: const EdgeInsets.all(22.0),
             child: SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.all(22.0),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: FloatingActionButton.extended(
-                    backgroundColor: Colors.red[700],
-                    onPressed: () {},
-                    label: const Text(
-                      'Create',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
+              width: MediaQuery.of(context).size.width,
+              child: FloatingActionButton.extended(
+                backgroundColor: Colors.red[700],
+                onPressed: () {},
+                label: const Text(
+                  'Create',
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
             ),
