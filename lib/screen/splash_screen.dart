@@ -8,7 +8,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-        seconds: 14,
+        seconds: 3,
         navigateAfterSeconds: MainPage(),
         title: const Text('Welcome In SplashScreen'),
         image: Image.asset('assets/img_2.png'),
