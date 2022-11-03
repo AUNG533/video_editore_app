@@ -4,6 +4,8 @@ import 'package:video_editing_app/screen/me_screen.dart';
 import 'package:video_editing_app/screen/mix_screen.dart';
 import 'package:video_editing_app/screen/search_screen.dart';
 
+import '../components/colors.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -30,10 +32,10 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(250, 20, 21, 24),
+      backgroundColor: bgColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color.fromARGB(250, 20, 21, 24),
+        backgroundColor: bgColor,
         leading: const Image(
           image: AssetImage('assets/img.png'),
         ),
@@ -60,30 +62,32 @@ class _MainPageState extends State<MainPage> {
       body: _screens.elementAt(_selectedIndex),
       
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromARGB(250, 20, 21, 24),
+        backgroundColor: bgColor,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: const TextStyle(color: Colors.grey),
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         items: const [
           BottomNavigationBarItem(
-            backgroundColor: Color.fromARGB(250, 20, 21, 24),
+            backgroundColor: bgColor,
             icon: Icon(Icons.dashboard_customize),
             label: 'Mix',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromARGB(250, 20, 21, 24),
+            backgroundColor: bgColor,
             icon: Icon(Icons.search),
-            label: 'Mix',
+            label: 'Search',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromARGB(250, 20, 21, 24),
+            backgroundColor: bgColor,
             icon: Icon(Icons.add_circle),
             label: 'Create',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromARGB(250, 20, 21, 24),
+            backgroundColor: bgColor,
             icon: Icon(Icons.person),
-            label: 'Mix',
+            label: 'Me',
           ),
         ],
         currentIndex: _selectedIndex,
