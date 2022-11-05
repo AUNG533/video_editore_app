@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'edit_screen.dart';
+
 class CreateProject extends StatefulWidget {
   const CreateProject({Key? key}) : super(key: key);
 
@@ -72,7 +74,8 @@ class _CreateProjectState extends State<CreateProject> {
                           enabledBorder: OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.white, width: 1.0),
-                            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(32.0)),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide:
@@ -101,13 +104,15 @@ class _CreateProjectState extends State<CreateProject> {
                             runSpacing: 16,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: InkWell(
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black12,
                                     radius: 50.0,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(Icons.airplay_rounded),
                                         Text('16:9'),
@@ -117,13 +122,15 @@ class _CreateProjectState extends State<CreateProject> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: InkWell(
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black12,
                                     radius: 50.0,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(Icons.airplay_rounded),
                                         Text('16:9'),
@@ -133,13 +140,15 @@ class _CreateProjectState extends State<CreateProject> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: InkWell(
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black12,
                                     radius: 50.0,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(Icons.airplay_rounded),
                                         Text('9:16'),
@@ -147,14 +156,17 @@ class _CreateProjectState extends State<CreateProject> {
                                     ),
                                   ),
                                 ),
-                              ),                      Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: InkWell(
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black12,
                                     radius: 50.0,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(Icons.airplay_rounded),
                                         Text('1:1'),
@@ -164,13 +176,15 @@ class _CreateProjectState extends State<CreateProject> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: InkWell(
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black12,
                                     radius: 50.0,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(Icons.airplay_rounded),
                                         Text('4:3'),
@@ -180,13 +194,15 @@ class _CreateProjectState extends State<CreateProject> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: InkWell(
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black12,
                                     radius: 50.0,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(Icons.airplay_rounded),
                                         Text('3:4'),
@@ -196,13 +212,15 @@ class _CreateProjectState extends State<CreateProject> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: InkWell(
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black12,
                                     radius: 50.0,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(Icons.airplay_rounded),
                                         Text('4:5'),
@@ -212,13 +230,15 @@ class _CreateProjectState extends State<CreateProject> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: InkWell(
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black12,
                                     radius: 50.0,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: const [
                                         Icon(Icons.airplay_rounded),
                                         Text('2:35:1'),
@@ -243,7 +263,12 @@ class _CreateProjectState extends State<CreateProject> {
               width: MediaQuery.of(context).size.width,
               child: FloatingActionButton.extended(
                 backgroundColor: Colors.red[700],
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EditScreen()),
+                  );
+                },
                 label: const Text(
                   'Create',
                   style: TextStyle(fontSize: 20),
