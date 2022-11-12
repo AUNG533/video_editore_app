@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:video_editing_app/screen/video_picker_screen.dart';
 
 import 'edit_screen.dart';
 
@@ -264,7 +265,7 @@ class _CreateProjectState extends State<CreateProject> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const EditScreen()),
+                    MaterialPageRoute(builder: (context) => const VideoPickerPage()),
                   );
                 },
                 label: const Text(
