@@ -52,6 +52,7 @@ dev_dependencies:
   video_editor: ^1.5.2
   image_picker: ^0.8.6
   helpers: ^1.2.0
+  flutter_camera: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

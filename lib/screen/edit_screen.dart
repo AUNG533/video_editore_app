@@ -4,6 +4,7 @@ import 'package:video_editing_app/components/colors.dart';
 import 'dart:io';
 import 'package:helpers/helpers.dart'
     show OpacityTransition, SwipeTransition, AnimatedInteractiveViewer;
+import 'package:video_editing_app/screen/camera_screen.dart';
 import 'package:video_editing_app/screen/video_picker_screen.dart';
 
 import 'package:video_editor/video_editor.dart';
@@ -123,158 +124,254 @@ class _EditScreenState extends State<EditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      body: SafeArea(
-        child: Row(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: 60.0,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-                      child: Container(
-                        color: Colors.grey[900],
-                        width: 50,
-                        height: 50,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              size: 30,
-                              color: Colors.white,
+      body: _controller.initialized
+          ? SafeArea(
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    width: 60.0,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 5.0),
+                            child: Container(
+                              color: Colors.grey[900],
+                              width: 50,
+                              height: 50,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Icon(
+                                    Icons.arrow_back_ios,
+                                    size: 30,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-                      child: Container(
-                        color: Colors.grey[900],
-                        width: 50,
-                        height: 50,
-                        child: TextButton(
-                          onPressed: () =>
-                              _controller.rotate90Degrees(RotateDirection.right),
-                          child: const Icon(
-                            Icons.undo_sharp,
-                            size: 30,
-                            color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 5.0),
+                            child: Container(
+                              color: Colors.grey[900],
+                              width: 50,
+                              height: 50,
+                              child: TextButton(
+                                onPressed: () => _controller
+                                    .rotate90Degrees(RotateDirection.right),
+                                child: const Icon(
+                                  Icons.undo_sharp,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-                      child: Container(
-                        color: Colors.grey[900],
-                        width: 50,
-                        height: 50,
-                        child: TextButton(
-                          onPressed: () =>
-                              _controller.rotate90Degrees(RotateDirection.left),
-                          child: const Icon(
-                            Icons.redo,
-                            size: 30,
-                            color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 5.0),
+                            child: Container(
+                              color: Colors.grey[900],
+                              width: 50,
+                              height: 50,
+                              child: TextButton(
+                                onPressed: () => _controller
+                                    .rotate90Degrees(RotateDirection.left),
+                                child: const Icon(
+                                  Icons.redo,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-                      child: Container(
-                        color: Colors.grey[900],
-                        width: 50,
-                        height: 50,
-                        child: TextButton(
-                          onPressed: _openCropScreen,
-                          child: const Icon(
-                            Icons.fullscreen,
-                            size: 30,
-                            color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 5.0),
+                            child: Container(
+                              color: Colors.grey[900],
+                              width: 50,
+                              height: 50,
+                              child: TextButton(
+                                onPressed: _openCropScreen,
+                                child: const Icon(
+                                  Icons.fullscreen,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-                      child: Container(
-                        color: Colors.grey[900],
-                        width: 50,
-                        height: 50,
-                        child: TextButton(
-                          onPressed: _exportCover,
-                          child: const Icon(
-                            Icons.settings,
-                            size: 30,
-                            color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 5.0),
+                            child: Container(
+                              color: Colors.grey[900],
+                              width: 50,
+                              height: 50,
+                              child: TextButton(
+                                onPressed: _exportCover,
+                                child: const Icon(
+                                  Icons.settings,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-                      child: Container(
-                        color: Colors.grey[900],
-                        width: 50,
-                        height: 50,
-                        child: TextButton(
-                          onPressed: () {},
-                          child: const Icon(
-                            Icons.format_list_bulleted,
-                            size: 30,
-                            color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 5.0),
+                            child: Container(
+                              color: Colors.grey[900],
+                              width: 50,
+                              height: 50,
+                              child: TextButton(
+                                onPressed: () {},
+                                child: const Icon(
+                                  Icons.format_list_bulleted,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Row(
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
                             flex: 2,
-                            child: Stack(
-                              alignment: Alignment.center,
+                            child: Row(
                               children: [
-                                CropGridViewer(
-                                  controller: _controller,
-                                  showGrid: false,
-                                ),
-                                AnimatedBuilder(
-                                  animation: _controller.video,
-                                  builder: (_, __) => OpacityTransition(
-                                    visible: !_controller.isPlaying,
-                                    child: GestureDetector(
-                                      onTap: _controller.video.play,
-                                      child: Container(
-                                        width: 60,
-                                        height: 60,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const Icon(Icons.play_arrow,
-                                            color: Colors.black),
+                                Expanded(
+                                  flex: 2,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      CropGridViewer(
+                                        controller: _controller,
+                                        showGrid: false,
                                       ),
+                                      AnimatedBuilder(
+                                        animation: _controller.video,
+                                        builder: (_, __) => OpacityTransition(
+                                          visible: !_controller.isPlaying,
+                                          child: GestureDetector(
+                                            onTap: _controller.video.play,
+                                            child: Container(
+                                              width: 60,
+                                              height: 60,
+                                              decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: const Icon(
+                                                  Icons.play_arrow,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    // color: Colors.pink,
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height,
+
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 8, right: 8, bottom: 0),
+                                            child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: InkWell(
+                                                onTap: _exportVideo,
+                                                child: CircleAvatar(
+                                                  radius: 30,
+                                                  backgroundColor:
+                                                      Colors.grey[900],
+                                                  child: const Icon(
+                                                      Icons.ios_share),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 5,
+                                          child: SizedBox(
+                                            width: 165,
+                                            height: 165,
+                                            child: _controls(context),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 0, left: 8, right: 0),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: InkWell(
+                                                    onTap: () {},
+                                                    child: CircleAvatar(
+                                                      radius: 30,
+                                                      backgroundColor:
+                                                          Colors.grey[900],
+                                                      child: const Icon(
+                                                          Icons.store),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 0, left: 0, right: 8),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: InkWell(
+                                                    onTap: () {},
+                                                    child: CircleAvatar(
+                                                      radius: 30,
+                                                      backgroundColor:
+                                                          Colors.grey[900],
+                                                      child: const Icon(Icons
+                                                          .play_arrow_rounded),
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -282,100 +379,18 @@ class _EditScreenState extends State<EditScreen> {
                             ),
                           ),
                           Expanded(
-                            child: SizedBox(
-                              // color: Colors.pink,
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height,
-
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8, right: 8, bottom: 0),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: InkWell(
-                                          onTap: () {},
-                                          child: CircleAvatar(
-                                            radius: 30,
-                                            backgroundColor: Colors.grey[900],
-                                            child: const Icon(Icons.ios_share),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 5,
-                                    child: SizedBox(
-                                      width: 165,
-                                      height: 165,
-                                      child: _controls(context),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 0, left: 8, right: 0),
-                                          child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: CircleAvatar(
-                                                radius: 30,
-                                                backgroundColor:
-                                                    Colors.grey[900],
-                                                child: const Icon(Icons.store),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 0, left: 0, right: 8),
-                                          child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: CircleAvatar(
-                                                radius: 30,
-                                                backgroundColor:
-                                                    Colors.grey[900],
-                                                child: const Icon(
-                                                    Icons.play_arrow_rounded),
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: _trimSlider()),
                           ),
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: _trimSlider()),
-                    ),
-                  ],
-                ),
+                  )
+                ],
               ),
             )
-          ],
-        ),
-      ),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
@@ -504,7 +519,14 @@ Widget _controls(BuildContext context) {
                       ],
                     )),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CameraScreen(),
+                      ),
+                    );
+                  },
                   child: Container(
                     width: 45,
                     height: 45,
@@ -868,14 +890,16 @@ class _VideoEditorState extends State<VideoEditor> {
       ),
       Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(vertical: height / 4),
+        margin: EdgeInsets.symmetric(vertical: height / 8),
         child: TrimSlider(
+          controller: _controller,
+          height: height,
+          horizontalMargin: height / 4,
+          child: TrimTimeline(
             controller: _controller,
-            height: height,
-            horizontalMargin: height / 4,
-            child: TrimTimeline(
-                controller: _controller,
-                margin: const EdgeInsets.only(top: 10))),
+            margin: const EdgeInsets.only(top: 2),
+          ),
+        ),
       )
     ];
   }
