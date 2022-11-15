@@ -30,6 +30,9 @@ class _EditScreenState extends State<EditScreen> {
   String _exportText = "";
   late VideoEditorController _controller;
 
+  bool _isVisible = true;
+  bool _isVisible2 = false;
+
   @override
   void initState() {
     SystemChrome.setPreferredOrientations(
@@ -66,7 +69,6 @@ class _EditScreenState extends State<EditScreen> {
       onCompleted: (file) {
         _isExporting.value = false;
         if (!mounted) return;
-
         final VideoPlayerController videoController =
             VideoPlayerController.file(file);
         videoController.initialize().then((value) async {
@@ -234,7 +236,12 @@ class _EditScreenState extends State<EditScreen> {
                               width: 50,
                               height: 50,
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  setState(() {
+                                    _isVisible = !_isVisible;
+                                    _isVisible2 = !_isVisible2;
+                                  });
+                                },
                                 child: const Icon(
                                   Icons.format_list_bulleted,
                                   size: 30,
@@ -305,7 +312,57 @@ class _EditScreenState extends State<EditScreen> {
                                             child: Align(
                                               alignment: Alignment.centerRight,
                                               child: InkWell(
-                                                onTap: _exportVideo,
+                                                onTap: () {
+                                                  showDialog(
+                                                      context: context,
+                                                      barrierDismissible: true,
+                                                      builder: (context) {
+                                                        return AlertDialog(
+                                                          backgroundColor: bgColor,
+                                                          title: const Center(
+                                                            child: Text(
+                                                                'Export Project', style: TextStyle(color: Colors.white),),
+                                                          ),
+                                                          content:
+                                                              const SizedBox(
+                                                            height: 100,
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                'assets/export.png',
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          actions: [
+                                                            Padding(
+                                                              padding: const EdgeInsets.all(8.0),
+                                                              child: FloatingActionButton
+                                                                  .extended(
+                                                                  backgroundColor: buttonColor,
+                                                                onPressed: () {
+                                                                    Navigator.pop(context);
+                                                                    _exportVideo();
+                                                                },
+                                                                label: const Text(
+                                                                    'Export Video')
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets.all(8.0),
+                                                              child: FloatingActionButton
+                                                                  .extended(
+                                                                  backgroundColor: buttonColor,
+                                                                onPressed: () {
+                                                                  Navigator.pop(context);
+                                                                  _exportCover();
+                                                                },
+                                                                label: const Text(
+                                                                    'Export Thumbnails')
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      });
+                                                },
                                                 child: CircleAvatar(
                                                   radius: 30,
                                                   backgroundColor:
@@ -378,10 +435,17 @@ class _EditScreenState extends State<EditScreen> {
                               ],
                             ),
                           ),
-                          Expanded(
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: _trimSlider()),
+                          Visibility(
+                            visible: _isVisible2,
+                            child: _coverSelection(),
+                          ),
+                          Visibility(
+                            visible: _isVisible,
+                            child: Expanded(
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: _trimSlider()),
+                            ),
                           ),
                         ],
                       ),
@@ -391,6 +455,22 @@ class _EditScreenState extends State<EditScreen> {
               ),
             )
           : const Center(child: CircularProgressIndicator()),
+    );
+  }
+
+  Widget _coverSelection() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          height: 100,
+          margin: EdgeInsets.symmetric(horizontal: height / 2),
+          child: SingleChildScrollView(
+            child: CoverSelection(
+              controller: _controller,
+              height: height,
+              quantity: 30,
+            ),
+          )),
     );
   }
 
@@ -443,7 +523,7 @@ class _EditScreenState extends State<EditScreen> {
       Expanded(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          // margin: EdgeInsets.symmetric(vertical: height / 8),
+          margin: EdgeInsets.symmetric(vertical: height / 8),
           child: TrimSlider(
             controller: _controller,
             height: height,
