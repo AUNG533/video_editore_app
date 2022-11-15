@@ -414,7 +414,9 @@ class _EditScreenState extends State<EditScreen> {
                                                   alignment:
                                                       Alignment.centerRight,
                                                   child: InkWell(
-                                                    onTap: () {},
+                                                    onTap: () {
+                                                      _controller.video.play();
+                                                    },
                                                     child: CircleAvatar(
                                                       radius: 30,
                                                       backgroundColor:

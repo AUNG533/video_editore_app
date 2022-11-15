@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:video_editing_app/components/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:cool_alert/cool_alert.dart';
+
+import 'edit_screen.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  final ImagePicker _picker = ImagePicker();
 
   @override
   void initState() {
@@ -69,6 +73,20 @@ class _CameraScreenState extends State<CameraScreen>
     });
   }
 
+  void _pickVideo() async {
+    final XFile? file = await _picker.pickVideo(source: ImageSource.gallery);
+    if (mounted && file != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => EditScreen(
+            file: File(file.path),
+          ),
+        ),
+      );
+    }
+  }
+
   void _recordVideo() async {
     ImagePicker()
         .getVideo(source: ImageSource.camera)
@@ -77,12 +95,15 @@ class _CameraScreenState extends State<CameraScreen>
         setState(() {
           videoButtonText = "Saving Video...";
         });
-        GallerySaver.saveVideo(recordedVideo.path, albumName: 'TestVideo')
-            .then((bool? success) {
-          setState(() {
-            videoButtonText = 'Video Recording Saved Successfully';
-          });
-        });
+        GallerySaver.saveVideo(recordedVideo.path, albumName: 'TestVideo');
+
+        CoolAlert.show(
+          context: context,
+          type: CoolAlertType.success,
+          text: 'Video Saved Successfully!',
+        );
+         
+        _pickVideo();
       }
     });
   }

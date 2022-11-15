@@ -54,6 +54,8 @@ dev_dependencies:
   helpers: ^1.2.0
   flutter_camera: any
   gallery_saver: ^2.3.2
+  ffmpeg_kit_flutter_min_gpl: ^5.1.0
+  cool_alert:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
